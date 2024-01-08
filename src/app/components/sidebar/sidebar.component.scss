@@ -1,0 +1,42 @@
+.sidebar {
+  width: 250px;
+  background-color: #333;
+  color: #fff;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  transition: width 0.3s ease; /* Añade una transición de ancho */
+
+  .sidebar-list {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 10px;
+
+      a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: #ff5733;
+        }
+      }
+    }
+  }
+
+  // Media Query para dispositivos con un ancho de pantalla menor a 768px
+  @media (max-width: 768px) {
+    width: 100%; /* Cambia el ancho del sidebar a 100% */
+    padding: 10px; /* Ajusta el espaciado */
+  }
+}
+
+.collapsed {
+  width: 97%;
+  margin-left: 0px;
+}

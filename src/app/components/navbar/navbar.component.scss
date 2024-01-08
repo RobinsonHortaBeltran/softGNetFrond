@@ -1,0 +1,26 @@
+#offcanvasDarkNavbar{
+  width: 20%;
+  background:#0057BB;
+}
+
+#navbar{
+  background:#0057BB;
+}
+
+.offcanvas-title-css{
+  color: #fff;
+}
+
+.nav-a{
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 10px;
+    color: #616161;
+    cursor: pointer;
+}
+
+.nav-item:hover{
+  background-color: rgba(238, 238, 238, 0.89);
+  .nav-a{
+    color: gray;}
+}

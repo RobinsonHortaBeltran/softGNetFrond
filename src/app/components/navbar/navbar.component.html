@@ -1,0 +1,40 @@
+<!-- <nav class="navbar" [class.collapsed]="isNavbarCollapsed">
+  <div class="navbar-brand">
+    <i (click)="onToggleSidebar()" class="hamburger-button"> <img [src]="'../../../assets/svg/bars.svg'" alt="Icono SVG"></i>
+  </div>
+  <ul class="navbar-menu">
+    <li class="navbar-item"><a class="navbar-link" routerLink="/inicio">Inicio</a></li>
+    <li class="navbar-item"><a class="navbar-link" routerLink="/perfil">Perfil</a></li>
+    <li class="navbar-item"><a class="navbar-link" routerLink="/productos">Productos</a></li>
+  </ul>
+</nav> -->
+<nav id="navbar" class="navbar navbar-dark fixed-top">
+  <div class="container-fluid">
+    <span class="navbar-toggler" type="button"  (click)="onToggleSidebar()" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </span>
+    <a class="navbar-brand" href="#"><i><img src="../../../assets/svg/off.svg" alt=""></i></a>
+    <div class="offcanvas offcanvas-start" data-bs-backdrop="static"  tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title-css" id="offcanvasDarkNavbarLabel">Recaudo Horizontal</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" (click)="onToggleSidebar()" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body bg-light">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item" *ngFor="let item of Buttons">
+            <div class="row">
+              <div class="col-2 d-flex align-items-center">
+                <i style="margin-left: 5px;margin-bottom: 6px;"><img src="{{item.svg}}" alt=""></i>
+              </div>
+              <div class="col-10 d-flex align-items-center">
+                <a class="nav-link nav-a d-flex align-items-center" (click)="navigateTo(item.route,item.children)" aria-current="page">
+                  {{ item.title }}
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

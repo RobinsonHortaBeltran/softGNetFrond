@@ -1,0 +1,10 @@
+<ngx-dropzone (change)="onDrop($event)">
+  <ngx-dropzone-label>
+    Arrastra y suelta una imagen aquí
+    <img *ngIf="imagePreview" [src]="imagePreview" alt="Vista previa de la imagen">
+  </ngx-dropzone-label>
+</ngx-dropzone>
+<div class="buttons">
+  <a title="Limpiar" (click)="onClear()"><i><img src="../../../../../assets/svg/trash.svg" alt=""></i></a>
+  
+</div>

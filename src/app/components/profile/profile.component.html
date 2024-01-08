@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="container-toolbard">
+                    <span class="span-title">MIS DATOS</span>
+                    <app-profile-toolbard (editClicked)="enviarTrueAlHijo2($event)"></app-profile-toolbard>
+                </div>
+                <hr>
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <app-profile-image></app-profile-image>
+                            </div>
+                            <div class="col-md-8">
+                                <app-profile-form [valorRecibido]="valorRecibido"></app-profile-form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

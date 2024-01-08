@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <a [routerLink]="['/home', 'profile']" style="cursor:pointer">
+      <div class="card" style="width: 18rem; background: #1A58B4;color: white; border-radius: 10px;">
+        <div class="card-body" style="text-align: center;">
+          <h5 class="card-title">Mis datos</h5>
+          <img style="width: 50%;" src="../../../assets/svg/cardProfile.svg" alt="">
+          <p class="card-text mt-2">Actualizar mis datos personales.</p>
+        </div>
+      </div>
+      </a>
+    </div>
+    <div class="col-4">
+      <a style="cursor: pointer;">
+      <div class="card" style="width: 18rem; background: #84D0C9;color: white; border-radius: 10px;">
+        <div class="card-body" style="text-align: center;">
+          <h5 class="card-title">Mis contratos</h5>
+          <img style="width: 34%" src="../../../assets/svg/contract.svg" alt="">
+          <p class="card-text mt-2">Apartamentos asociados</p>
+        </div>
+      </div>
+      </a>
+    </div>
+    <div class="col-4">
+      <a style="cursor:pointer">
+        <div class="card" style="width: 18rem; background: #1A58B4;color: white; border-radius: 10px;">
+          <div class="card-body" style="text-align: center;">
+            <h5 class="card-title">Mis facturas</h5>
+            <img style="width: 34%;" src="../../../assets/svg/invoice.svg" alt="">
+            <p class="card-text mt-2">Listado de facturas.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-4">
+      <a style="cursor: pointer;">
+        <div class="card" style="width: 18rem; background: #84D0C9;color: white; border-radius: 10px;">
+          <div class="card-body" style="text-align: center;">
+            <h5 class="card-title">Pagar</h5>
+            <img style="width: 34%" src="../../../assets/svg/payment-card.svg" alt="">
+            <p class="card-text mt-2">Realizar un nuevo pago</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-4">
+      <a [routerLink]="['/home', 'profile']" style="cursor:pointer">
+        <div class="card" style="width: 18rem; background: #1A58B4;color: white; border-radius: 10px;">
+          <div class="card-body" style="text-align: center;">
+            <h5 class="card-title">Historial de pagos</h5>
+            <img style="width: 32%;" src="../../../assets/svg/record-payments.svg" alt="">
+            <p class="card-text mt-2">Ver historial de pagos.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-4">
+      <a [routerLink]="['/home', 'profile']" style="cursor:pointer">
+        <div class="card" style="width: 18rem; background: #84D0C9;color: white; border-radius: 10px;">
+          <div class="card-body" style="text-align: center;">
+            <h5 class="card-title">Certificados</h5>
+            <img style="width: 32%;" src="../../../assets/svg/certificate.svg" alt="">
+            <p class="card-text mt-2">Generar certificado.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    
+  </div>
+</div>

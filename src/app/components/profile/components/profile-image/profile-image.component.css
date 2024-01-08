@@ -1,0 +1,20 @@
+img {
+    max-width: 80%;
+    max-height: 80%;
+    margin-top: 10px;
+}
+.buttons {
+    margin-top: 10px;
+}
+
+button {
+    margin-right: 10px;
+}
+
+a {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    width: 20%;
+}
+

@@ -1,0 +1,34 @@
+/* Estilos personalizados para mostrar solo la línea inferior del form-floating */
+.form-floating {
+    position: relative;
+}
+
+.form-floating input {
+    border: none;
+    border-bottom: 1px dashed #ced4da;
+    /* Color de la línea inferior */
+    border-radius: 0;
+    /* Borde inferior sin redondeo */
+}
+
+.form-floating label {
+    color: #495057;
+    /* Color del texto de la etiqueta */
+}
+
+/* Estilos adicionales para resaltar la línea inferior cuando se enfoca */
+.form-floating input:focus {
+    border-bottom-color: #007bff;
+    /* Cambia el color de la línea inferior al enfocar */
+    box-shadow: none;
+    /* Elimina la sombra al enfocar */
+}
+
+.error-message {
+    color: red;
+    /* Cambia el color del texto a rojo o el color que desees */
+    font-size: 14px;
+    /* Tamaño de la fuente del mensaje de error */
+    margin-top: 5px;
+    /* Espaciado superior para separar el mensaje de error del campo de entrada */
+}
