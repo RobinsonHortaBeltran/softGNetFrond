@@ -24,3 +24,9 @@
   .nav-a{
     color: gray;}
 }
+
+@media (max-width: 767px) {
+    #offcanvasDarkNavbar {
+        width: 71%;
+    }
+}

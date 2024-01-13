@@ -15,10 +15,10 @@ export class ProfileFormComponent implements OnInit {
       primerNombre: ['', [Validators.required]],
       segundoNombre: ['', []],
       primerApellido: ['', [Validators.required]],
-      segundoApellido: ['', []],
-      noIdentificacion: ['', []],
+      segundoApellido: ['', [Validators.required]],
+      noIdentificacion: ['', [Validators.required]],
       correoElectronico: ['', [Validators.required, Validators.email]],
-      telefonoMovil: ['', []],
+      telefonoMovil: ['', [Validators.required]],
       torre: ['', [Validators.required]],
       apartamento: ['', [Validators.required]],
     });
@@ -33,8 +33,7 @@ export class ProfileFormComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['valorRecibido']) {
      this.habilitarCampos()
-     console.log('valorRecibido desde el hijo', this.valorRecibido);
-     
+
     }
   }
 

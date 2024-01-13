@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-profile-image',
@@ -6,16 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-image.component.css'],
 })
 export class ProfileImageComponent implements OnInit {
+  @Input() valorRecibido: boolean | undefined;
+  formularioInvalido: boolean = true;
+  imagePreview: string | null = null;
+
   constructor() {}
 
   ngOnInit() {}
-
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['valorRecibido']) {
+      this.formularioInvalido = !changes['valorRecibido'].currentValue;
+    }
+  }
   config: any = {
     url: '/api/upload',
     maxFiles: 1,
   };
-
-  imagePreview: string | null = null;
 
   onDrop(event: any) {
     if (event.addedFiles.length > 0) {

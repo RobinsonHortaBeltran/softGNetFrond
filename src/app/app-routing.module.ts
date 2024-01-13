@@ -5,6 +5,8 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { StartComponent } from './components/start/start.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { InvoicesComponent } from './components/invoices/invoices.component';
+import {ContractComponent} from "./components/contract/contract.component";
 const routes: Routes = [
   { path: '', component: LoginComponent },
   {
@@ -19,6 +21,15 @@ const routes: Routes = [
         path: 'profile',
         component: ProfileComponent,
       },
+      {
+        path: 'invoices',
+        component: InvoicesComponent,
+      },
+      {
+        path: 'contract',
+        component: ContractComponent,
+
+      }
       // Agrega más rutas internas si es necesario
     ],
   },

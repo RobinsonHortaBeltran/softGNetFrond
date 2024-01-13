@@ -4,8 +4,8 @@
   height: calc(100vh - 16px);
   overflow: hidden;
 
-  h2{
-    font-family: 'Fredoka One', sans-serif;
+  h2 {
+    font-family: "Fredoka One", sans-serif;
     font-size: 1.5rem;
     color: #040505;
     margin-bottom: 20px;
@@ -82,13 +82,17 @@
 }
 
 @media screen and (max-width: 600px) {
-  .login-container {
-    width: 90%;
-    max-width: 100%;
-  }
+  // .login-container {
+  //   width: 90%;
+  //   max-width: 100%;
+  // }
 }
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
 
 .input-container {
   display: -ms-flexbox; /* IE10 */
@@ -134,4 +138,31 @@ body {font-family: Arial, Helvetica, sans-serif;}
   color: red;
   font-size: 12px;
   margin-top: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  .login-container {
+    flex-direction: column; /* Cambia la dirección de flex a columna */
+    align-items: center; /* Centra el contenido en el eje transversal */
+    width: 100%;
+    background-image: url("../../../assets/img/paymenSave.jpeg"); /* Reemplaza 'tu_imagen.jpg' con la URL de tu imagen */
+    background-size: cover;
+    background-position: center;
+  }
+
+  .image-section {
+    display: none; /* Oculta la imagen en pantallas móviles */
+  }
+
+  .form-section {
+    width: 130%; /* Ocupa todo el ancho disponible */
+  }
+
+  form {
+    width: 100%; /* Ajusta el ancho del formulario para pantallas más pequeñas */
+    background: #fff;
+  }
+  .btn {
+    height: 45px;
+  }
 }

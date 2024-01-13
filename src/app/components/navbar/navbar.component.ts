@@ -23,9 +23,18 @@ export class NavbarComponent {
       route: this.homeRoute,
       children: 'profile',
     },
-    { title: 'MIS DATOS', svg: '', route: this.homeRoute, },
-    { title: 'MIS CONTRATOS', svg: '', route: this.homeRoute, },
-    { title: 'MIS FACTURAS', svg: '', route: this.homeRoute, },
+    // {
+    //   title: 'MIS CONTRATOS',
+    //   svg: `${this.pathSvg}/invoice.svg `,
+    //   route: this.homeRoute,
+    //   children: 'contracts',
+    // },
+    {
+      title: 'MIS FACTURAS',
+      svg: `${this.pathSvg}/invoice-icon.svg `,
+      route: this.homeRoute,
+      children: 'invoices',
+    },
   ];
 
   treeData: any[] = [

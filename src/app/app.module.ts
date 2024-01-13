@@ -16,7 +16,19 @@ import { ProfileToolbardComponent } from './components/profile/components/profil
 import { ProfileImageComponent } from './components/profile/components/profile-image/profile-image.component';
 import { ProfileFormComponent } from './components/profile/components/profile-form/profile-form.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { ContractComponent } from './components/contract/contract.component';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { DialogContentExampleDialogComponent } from './components/dialog-content-example-dialog/dialog-content-example-dialog.component';
+import {MatInputModule} from "@angular/material/input";
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +43,9 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     ProfileToolbardComponent,
     ProfileImageComponent,
     ProfileFormComponent,
+    BreadcrumbComponent,
+    ContractComponent,
+    DialogContentExampleDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +53,17 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     FormsModule,
     ReactiveFormsModule,
     NgxDropzoneModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule,
+    MatCardModule,
+    MatDividerModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatDialogModule,
+    MatInputModule,
+    // Import MatPaginatorModule instead of MatPaginator
   ],
   providers: [],
   bootstrap: [AppComponent],
