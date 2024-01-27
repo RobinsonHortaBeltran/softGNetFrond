@@ -1,0 +1,12 @@
+.separator {
+  border: 0;
+  height: 2px;
+  background-color: orangered;
+}
+
+.header-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
