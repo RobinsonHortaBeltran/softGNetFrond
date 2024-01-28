@@ -1,6 +1,5 @@
 <div>
   <app-navbar (toggleSidebar)="toggleSidebar()"></app-navbar>
-  <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
   <div class="main-content" [ngClass]="{'offcanvas-open': isOffcanvasOpen}">
     <router-outlet></router-outlet>
     <div class="row text-right mt-4">

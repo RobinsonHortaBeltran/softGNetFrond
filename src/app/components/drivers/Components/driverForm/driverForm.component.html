@@ -1,0 +1,146 @@
+<div class="container">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()" *ngIf="formulario">
+    <div class="row">
+      <div class="col">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" [attr.disabled]="!camposHabilitados" formControlName="first_name"
+            id="floatingInput">
+          <label for="floatingInput">Primer nombre*</label>
+          <div *ngIf="formulario.get('first_name')?.invalid &&
+            (formulario.get('first_name')?.dirty || formulario.get('first_name')?.touched)" class="error-message">
+            <div *ngIf="formulario.get('first_name')?.errors?.['required']">
+              *Campo Requerido
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" [attr.disabled]="!camposHabilitados" formControlName="last_name"
+            id="floatingInput">
+          <label for="floatingInput">Apellido</label>
+          <div *ngIf="formulario.get('last_name')?.invalid &&
+            (formulario.get('last_name')?.dirty || formulario.get('last_name')?.touched)"
+            class="error-message">
+            <div *ngIf="formulario.get('last_name')?.errors?.['required']">
+              *Campo Requerido
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" [attr.disabled]="!camposHabilitados" formControlName="ssn"
+            id="floatingInput">
+          <label for="floatingInput">Ssn*</label>
+          <div *ngIf="formulario.get('ssn')?.invalid &&
+            (formulario.get('ssn')?.dirty || formulario.get('ssn')?.touched)"
+            class="error-message">
+            <div *ngIf="formulario.get('ssn')?.errors?.['required']">
+              *Campo Requerido
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-floating mb-3">
+          <input type="string" class="form-control" [attr.disabled]="!camposHabilitados" formControlName="dod"
+            id="floatingInput">
+          <label for="floatingInput">Dod*</label>
+          <div *ngIf="formulario.get('dod')?.invalid &&
+            (formulario.get('dod')?.dirty || formulario.get('dod')?.touched)"
+            class="error-message">
+            <div *ngIf="formulario.get('dod')?.errors?.['required']">
+              *Campo Requerido
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" [attr.disabled]="!camposHabilitados"
+            formControlName="address" id="floatingInput">
+          <label for="floatingInput">Direccion*</label>
+          <div *ngIf="formulario.get('address')?.invalid &&
+            (formulario.get('address')?.dirty || formulario.get('address')?.touched)"
+            class="error-message">
+            <div *ngIf="formulario.get('address')?.errors?.['required']">
+              *Campo Requerido
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" [attr.disabled]="!camposHabilitados"
+            formControlName="city" id="floatingInput">
+          <label for="floatingInput">Ciudad*</label>
+          <div *ngIf="formulario.get('city')?.invalid &&
+            (formulario.get('city')?.dirty || formulario.get('city')?.touched)"
+            class="error-message">
+            <div *ngIf="formulario.get('city')?.errors?.['required']">
+              *Campo Requerido
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" [attr.disabled]="!camposHabilitados" formControlName="zip"
+            id="floatingInput">
+          <label for="floatingInput">Codigo zip *</label>
+          <div *ngIf="formulario.get('zip')?.invalid &&
+             (formulario.get('zip')?.dirty || formulario.get('zip')?.touched)"
+            class="error-message">
+            <div *ngIf="formulario.get('zip')?.errors?.['required']">
+              *Campo Requerido
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" [attr.disabled]="!camposHabilitados" formControlName="phone"
+            id="floatingInput">
+          <label for="floatingInput">Telefono*</label>
+          <div *ngIf="formulario.get('phone')?.invalid &&
+            (formulario.get('phone')?.dirty || formulario.get('phone')?.touched)" class="error-message">
+            <div *ngIf="formulario.get('phone')?.errors?.['required']">
+              *Campo Requerido
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-floating mb-3">
+          <select class="form-control" [attr.disabled]="!camposHabilitados" formControlName="active"
+            id="floatingInput">
+            <option selected>Seleccionar</option>
+            <option value="true">Activo</option>
+            <option value="false">Inactivo</option>
+
+          </select>
+          <label for="floatingInput">Estado*</label>
+          <div *ngIf="formulario.get('active')?.invalid &&
+            (formulario.get('active')?.dirty || formulario.get('active')?.touched)" class="error-message">
+            <div *ngIf="formulario.get('active')?.errors?.['required']">
+              *Campo Requerido
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button mat-raised-button style="width: 100%;height: 30px;" type="submit" [disabled]="!formulario.valid"
+          color="primary">Enviar</button>
+      </div>
+    </div>
+  </form>
+</div>

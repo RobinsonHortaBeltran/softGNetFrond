@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="container-toolbard">
+          <span class="span-title">Conductores</span>
+        <app-drivers-toolbar></app-drivers-toolbar>
+        </div>
+        <hr>
+        <div class="card-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6">
+              <app-table-drivers [datosHijo2]="datosDesdeHijo1"></app-table-drivers>
+              </div>
+              <div class="col-md-6">
+                <app-driverForm (enviarDatos)="recibirDatosHijo1($event)"></app-driverForm>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

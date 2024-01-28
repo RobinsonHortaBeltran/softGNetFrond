@@ -18,45 +18,29 @@ export class NavbarComponent {
       children: 'start',
     },
     {
-      title: 'MI PERFIL',
-      svg: `${this.pathSvg}/profile.svg`,
+      title: 'Conductores',
+      svg: `${this.pathSvg}/cardProfileMenue.svg`,
       route: this.homeRoute,
-      children: 'profile',
+      children: 'drivers',
     },
-    // {
-    //   title: 'MIS CONTRATOS',
-    //   svg: `${this.pathSvg}/invoice.svg `,
-    //   route: this.homeRoute,
-    //   children: 'contracts',
-    // },
-    {
-      title: 'MIS FACTURAS',
-      svg: `${this.pathSvg}/invoice-icon.svg `,
-      route: this.homeRoute,
-      children: 'invoices',
-    },
-  ];
 
-  treeData: any[] = [
     {
-      id: 1,
-      nombre: 'Nodo 1',
-      children: [
-        { id: 2, nombre: 'Nodo 1.1' },
-        { id: 3, nombre: 'Nodo 1.2' },
-      ],
+      title: 'Vehiculos',
+      svg: `${this.pathSvg}/newCars.svg`,
+      route: this.homeRoute,
+      children: 'vehicles',
     },
     {
-      id: 4,
-      nombre: 'Nodo 2',
+      title: 'Rutas',
+      svg: `${this.pathSvg}/routeMenue.svg`,
+      route: this.homeRoute,
+      children: 'routes',
     },
     {
-      id: 5,
-      nombre: 'Nodo 3',
-      children: [
-        { id: 6, nombre: 'Nodo 3.1' },
-        { id: 7, nombre: 'Nodo 3.2' },
-      ],
+      title: 'Horarios',
+      svg: `${this.pathSvg}/scheduleMenue.svg`,
+      route: this.homeRoute,
+      children: 'schedule',
     },
   ];
 

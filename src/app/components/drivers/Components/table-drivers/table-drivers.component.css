@@ -1,0 +1,10 @@
+.selected {
+    background-color: lightblue;
+}
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+}

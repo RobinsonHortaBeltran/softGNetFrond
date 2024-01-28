@@ -1,3 +1,21 @@
 a {
   text-decoration: none;
 }
+
+.tarjeta {
+  width: 70%;
+  border-radius: 10px;
+  color: white;
+  height: 100%; /* Esto asegura que todas las tarjetas tengan la misma altura */
+}
+
+.tarjeta img {
+  width: 30%; /* Ajusta el tamaño de la imagen al 100% del contenedor */
+  height: 70%;
+  object-fit: cover; /* Mantiene la relación de aspecto y cubre completamente el contenedor */
+}
+
+.row {
+  display: flex;
+  justify-content: space-between; /* Distribuir el espacio entre las tarjetas */
+}

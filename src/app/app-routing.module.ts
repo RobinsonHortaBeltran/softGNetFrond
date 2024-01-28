@@ -5,8 +5,10 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { StartComponent } from './components/start/start.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { InvoicesComponent } from './components/invoices/invoices.component';
-import {ContractComponent} from "./components/contract/contract.component";
+import { DriversComponent } from './components/drivers/drivers.component';
+import { RoutesDComponent } from './components/routesD/routesD.component';
+import { VehiclesComponent } from './components/vehicles/vehicles.component';
+import { SchedulesComponent } from './components/schedules/schedules.component';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   {
@@ -18,24 +20,23 @@ const routes: Routes = [
         component: StartComponent,
       },
       {
-        path: 'profile',
-        component: ProfileComponent,
+        path:'drivers',
+        component:DriversComponent,
       },
       {
-        path: 'invoices',
-        component: InvoicesComponent,
+        path: 'routes',
+        component: RoutesDComponent,
       },
       {
-        path: 'contract',
-        component: ContractComponent,
-
+        path: 'vehicles',
+        component: VehiclesComponent,
+      },
+      {
+        path: 'schedule',
+        component: SchedulesComponent,
       }
-      // Agrega más rutas internas si es necesario
     ],
   },
-  //{ path: 'start', component: StartComponent },
-
-  // Agrega más rutas según tus necesidades
 ];
 
 @NgModule({

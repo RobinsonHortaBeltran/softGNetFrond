@@ -8,11 +8,6 @@ import { Component } from '@angular/core';
 export class HomeComponent {
   isSidebarVisible: boolean = false;
   isOffcanvasOpen = false;
-  breadcrumbItems:any = [
-    { label: 'Inicio', url: '/home/start' },
-    { label: 'Sección 1', url: '/seccion1' },
-    { label: 'Página Actual', url: '/seccion1/pagina-actual' }
-  ];
   toggleSidebar() {
     this.isOffcanvasOpen = !this.isOffcanvasOpen;
   }
