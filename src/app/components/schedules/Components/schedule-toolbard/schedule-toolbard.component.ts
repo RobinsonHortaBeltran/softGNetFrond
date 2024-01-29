@@ -31,12 +31,12 @@ export class ScheduleToolbardComponent implements OnInit {
   }
 
   onClear() {
-    alert("clear")
+   
     this.buttonClickEracer.emit();
   }
 
   onDelete() {
-    alert("delete")
+  
     this.deleteClicked.emit();
   }
 }

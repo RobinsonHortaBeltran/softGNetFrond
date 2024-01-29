@@ -23,7 +23,7 @@ export class SchedulesComponent implements OnInit {
   }
 
   handleToolbarButtonClick() {
-    alert("desde el padre")
+  
     this.clearFuncion = Math.random();
   }
 

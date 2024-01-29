@@ -67,7 +67,7 @@ export class ScheduleFormComponent implements OnInit {
       }
     }
     if (changes['clearFunction']) {
-      alert( this.clearFunction)
+
       this.formulario?.reset();
       this.typeSendData = 'create';
       this.formulario = this.buildFormWithoutId();
