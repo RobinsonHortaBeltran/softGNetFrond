@@ -1,0 +1,21 @@
+hr {
+    border: 0;
+    height: 2px;
+    background-color: orangered;
+}
+
+.container-toolbard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px 0px 10px;
+    height: 15px;
+}
+
+.span-title {
+    font-size: 20px;
+    font-weight: bold;
+    font-size: 1rem;
+    font-family: fredoka;
+    color: #53585e;
+}

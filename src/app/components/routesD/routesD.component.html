@@ -1,3 +1,28 @@
-<p>
-  routesD works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="container-toolbard">
+          <span class="span-title">Conductores</span>
+          <app-routes-toolbard (deleteClicked)="deleteToolbarButtonClick()"
+            (buttonClickEracer)="handleToolbarButtonClick()" ></app-routes-toolbard>
+        </div>
+        <hr>
+        <div class="card-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6">
+                <app-routes-table (dataEdit)="recibirDatosHijo2($event)"
+                  [datosHijo2]="datosDesdeHijo1"></app-routes-table>
+              </div>
+              <div class="col-md-6">
+                <app-routes-form [deleteClicked]="deleteFunction" [dataEditing]="datosDesdeHijo2"
+                  [clearFunction]="clearFuncion" (enviarDatos)="recibirDatosHijo1($event)"></app-routes-form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

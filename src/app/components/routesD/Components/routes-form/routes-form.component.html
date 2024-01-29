@@ -1,0 +1,71 @@
+<div class="container">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit(typeSendData)" *ngIf="formulario">
+    <div class="row">
+      <div class="col">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" [attr.disabled]="!camposHabilitados" formControlName="description"
+            id="floatingInput">
+          <label for="floatingInput">Descripcion*</label>
+          <div *ngIf="formulario.get('description')?.invalid &&
+            (formulario.get('description')?.dirty || formulario.get('description')?.touched)" class="error-message">
+            <div *ngIf="formulario.get('description')?.errors?.['required']">
+              *Campo Requerido
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-floating mb-3">
+          <select class="form-control" [attr.disabled]="!camposHabilitados" formControlName="driver_id" id="floatingInput">
+            <option *ngFor="let driver of drivers" [value]="driver.id">{{driver.first_name}} {{driver.last_name}}</option>
+          </select>
+          <label for="floatingInput">Conductor*</label>
+          <div *ngIf="formulario.get('driver_id')?.invalid &&
+            (formulario.get('driver_id')?.dirty || formulario.get('driver_id')?.touched)" class="error-message">
+            <div *ngIf="formulario.get('driver_id')?.errors?.['required']">
+              *Campo Requerido
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-floating mb-3">
+          <select class="form-control" [attr.disabled]="!camposHabilitados" formControlName="vehicle_id" id="floatingInput">
+            <option *ngFor="let vehicle of vehicles" [value]="vehicle.id">{{vehicle.description}} </option>
+          </select>
+          <label for="floatingInput">Ssn*</label>
+          <div *ngIf="formulario.get('vehicle_id')?.invalid &&
+            (formulario.get('vehicle_id')?.dirty || formulario.get('vehicle_id')?.touched)" class="error-message">
+            <div *ngIf="formulario.get('vehicle_id')?.errors?.['required']">
+              *Campo Requerido
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-floating mb-3">
+          <select class="form-control" [attr.disabled]="!camposHabilitados" formControlName="active" id="floatingInput">
+            <option selected>Seleccionar</option>
+            <option value="true">Activo</option>
+            <option value="false">Inactivo</option>
+          </select>
+          <label for="floatingInput">Estado*</label>
+          <div *ngIf="formulario.get('active')?.invalid &&
+                  (formulario.get('active')?.dirty || formulario.get('active')?.touched)" class="error-message">
+            <div *ngIf="formulario.get('active')?.errors?.['required']">
+              *Campo Requerido
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button mat-raised-button style="width: 100%;height: 30px;" type="submit" [disabled]="!formulario.valid"
+          color="primary">{{ esModoEditar ? 'Actualizar' : 'Guardar' }}</button>
+      </div>
+    </div>
+  </form>
+</div>

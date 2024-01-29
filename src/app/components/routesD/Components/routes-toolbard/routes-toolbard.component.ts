@@ -1,15 +1,13 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-
 @Component({
-  selector: 'app-drivers-toolbar',
-  templateUrl: './drivers-toolbar.component.html',
-  styleUrls: ['./drivers-toolbar.component.css'],
+  selector: 'app-routes-toolbard',
+  templateUrl: './routes-toolbard.component.html',
+  styleUrls: ['./routes-toolbard.component.css'],
 })
-export class DriversToolbarComponent implements OnInit {
+export class RoutesToolbardComponent implements OnInit {
   @Output() buttonClickEracer = new EventEmitter<void>();
   @Output() deleteClicked = new EventEmitter<void>();
   constructor() {}
-
   public editingButton: boolean = false;
   public eraserButton = true;
   public deleteButton = true;

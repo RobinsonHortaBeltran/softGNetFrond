@@ -7,21 +7,25 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { RoutesDService } from 'src/app/Services/RoutesD.service';
 import { ServicesService } from 'src/app/Services/services.service';
+import { VehiclesService } from 'src/app/Services/vehicles.service';
+
 import {
   MatSnackBarModule,
   MatSnackBar,
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-driverForm',
-  templateUrl: './driverForm.component.html',
-  styleUrls: ['./driverForm.component.css'],
+  selector: 'app-routes-form',
+  templateUrl: './routes-form.component.html',
+  styleUrls: ['./routes-form.component.css'],
 })
-export class DriverFormComponent implements OnInit {
+export class RoutesFormComponent implements OnInit {
   @Output() enviarDatos: EventEmitter<any> = new EventEmitter();
   @Input() dataEditing: any;
   @Input() clearFunction: any;
@@ -33,10 +37,15 @@ export class DriverFormComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   typeSendData = 'create';
   fechaEnFormato: string = '';
+  drivers: any[] = [];
+  vehicles: any[] = [];
+
   constructor(
     private fb: FormBuilder,
-    private _api: ServicesService,
-    private _snackBar: MatSnackBar
+    private _api: RoutesDService,
+    private _snackBar: MatSnackBar,
+    private _apiDriver: ServicesService,
+    private _apiVehicle: VehiclesService
   ) {
     if (this.formulario) {
       this.formulario.disable();
@@ -47,6 +56,9 @@ export class DriverFormComponent implements OnInit {
     if (this.typeSendData == 'create') {
       this.formulario = this.buildFormWithoutId();
     }
+
+    this.getDrivers();
+    this.getVehicles();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -64,8 +76,6 @@ export class DriverFormComponent implements OnInit {
     }
 
     if (changes['deleteClicked']) {
-      
-      
       if (this.dataEditing && this.dataEditing.id != undefined) {
         this.onDelete(this.dataEditing.id);
       } else {
@@ -73,19 +83,14 @@ export class DriverFormComponent implements OnInit {
       }
     }
   }
-  
+
   private buildFormWithId() {
     // Construye el formulario incluyendo el campo 'id' para el modo de edición
     return this.fb.group({
       id: ['', [Validators.required]],
-      last_name: ['', [Validators.required]],
-      first_name: ['', [Validators.required]],
-      ssn: ['', [Validators.required]],
-      dod: ['', [Validators.required]],
-      address: ['', [Validators.required]],
-      city: ['', [Validators.required]],
-      zip: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      driver_id: ['', [Validators.required]],
+      vehicle_id: ['', [Validators.required]],
       active: [true, [Validators.required]],
     });
   }
@@ -93,14 +98,9 @@ export class DriverFormComponent implements OnInit {
   private buildFormWithoutId() {
     // Construye el formulario sin el campo 'id' para el modo de creación
     return this.fb.group({
-      last_name: ['', [Validators.required]],
-      first_name: ['', [Validators.required]],
-      ssn: ['', [Validators.required]],
-      dod: ['', [Validators.required]],
-      address: ['', [Validators.required]],
-      city: ['', [Validators.required]],
-      zip: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      driver_id: ['', [Validators.required]],
+      vehicle_id: ['', [Validators.required]],
       active: [true, [Validators.required]],
     });
   }
@@ -109,10 +109,10 @@ export class DriverFormComponent implements OnInit {
     if (this.formulario && this.formulario.valid) {
       switch (typeSendData) {
         case 'create':
-          this.functionDriver(this.formulario.value);
+          this.functionRoute(this.formulario.value);
           break;
         case 'update':
-          this.updateDriver(this.formulario.value, this.dataEditing.id);
+          this.updateRoute(this.formulario.value, this.dataEditing.id);
           break;
         default:
           break;
@@ -122,11 +122,11 @@ export class DriverFormComponent implements OnInit {
     }
   }
 
-  functionDriver(form: any) {
-    this._api.postDriver(form).subscribe(
+  functionRoute(form: any) {
+    this._api.postRoute(form).subscribe(
       (res) => {
         this.enviarDatos.emit(true);
-        this.openSnackBar('Driver created successfully');
+        this.openSnackBar('Route created successfully');
         this.formulario?.reset();
       },
       (err) => {
@@ -135,12 +135,12 @@ export class DriverFormComponent implements OnInit {
     );
   }
 
-  updateDriver(form: any, id: number) {
-    this._api.updateDriver(form, id).subscribe(
+  updateRoute(form: any, id: number) {
+    this._api.updateRoute(form, id).subscribe(
       (res) => {
         this.enviarDatos.emit(true);
         this.formulario?.reset();
-        this.openSnackBar('Driver updated successfully');
+        this.openSnackBar('Route updated successfully');
         this.typeSendData = 'create';
       },
       (err) => {
@@ -152,14 +152,9 @@ export class DriverFormComponent implements OnInit {
     if (this.formulario && this.dataEditing) {
       this.formulario.patchValue({
         id: data.id,
-        last_name: data.last_name,
-        first_name: data.first_name,
-        ssn: data.ssn,
-        dod: data.dod,
-        address: data.address,
-        city: data.city,
-        zip: data.zip,
-        phone: data.phone,
+        description: data.last_name,
+        driver_id: data.first_name,
+        vehicle_id: data.ssn,
         active: data.active,
       });
     }
@@ -167,11 +162,11 @@ export class DriverFormComponent implements OnInit {
   }
 
   onDelete(id: number) {
-    this._api.deleteDriver(id).subscribe(
+    this._api.deleteRoute(id).subscribe(
       (res) => {
         this.enviarDatos.emit(true);
         this.formulario?.reset();
-        this.openSnackBar('Driver deleted successfully');
+        this.openSnackBar('Route deleted successfully');
         this.typeSendData = 'create';
       },
       (err) => {
@@ -184,5 +179,27 @@ export class DriverFormComponent implements OnInit {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
     });
+  }
+
+  getDrivers() {
+    this._apiDriver.getDrivers().subscribe(
+      (res) => {
+        this.drivers = res;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  getVehicles() {
+    this._apiVehicle.getVehicles().subscribe(
+      (res) => {
+        this.vehicles = res;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }

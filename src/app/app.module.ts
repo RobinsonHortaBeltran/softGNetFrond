@@ -32,6 +32,17 @@ import { DriversComponent } from './components/drivers/drivers.component';
 import { DriverFormComponent } from './components/drivers/Components/driverForm/driverForm.component';
 import { TableDriversComponent } from './components/drivers/Components/table-drivers/table-drivers.component';
 import { TokenInterceptor } from './Services/Interceptors/token.interceptor';
+import { MatSnackBarModule } from '@angular/material/snack-bar'; // Add this import
+import { VehiclesComponent } from './components/vehicles/vehicles.component';
+import { VehicleFormComponent } from './components/vehicles/Components/vehicle-form/vehicle-form.component';
+import { VehicleToolbardComponent } from './components/vehicles/Components/vehicle-toolbard/vehicle-toolbard.component';
+import { VehiclesTableComponent } from './components/vehicles/Components/vehicles-table/vehicles-table.component';
+import { RoutesDComponent } from './components/routesD/routesD.component';
+import { RoutesFormComponent } from './components/routesD/Components/routes-form/routes-form.component';
+import { RoutesTableComponent } from './components/routesD/Components/routes-table/routes-table.component';
+import { RoutesToolbardComponent } from './components/routesD/Components/routes-toolbard/routes-toolbard.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +59,14 @@ import { TokenInterceptor } from './Services/Interceptors/token.interceptor';
     DriversToolbarComponent,
     DriverFormComponent,
     TableDriversComponent,
-    // DriversToolbarComponent,
+    VehiclesComponent,
+    VehicleFormComponent,
+    VehicleToolbardComponent,
+    VehiclesTableComponent,
+    RoutesDComponent,
+    RoutesFormComponent,
+    RoutesTableComponent,
+    RoutesToolbardComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +85,10 @@ import { TokenInterceptor } from './Services/Interceptors/token.interceptor';
     MatDialogModule,
     MatInputModule,
     HttpClientModule,
-    MatPaginatorModule, // Replace DriversComponent with MatPaginatorModule
+    MatPaginatorModule,
+    MatSnackBarModule,
+    MatFormFieldModule,
+    MatAutocompleteModule, // Replace MatSnackBar with MatSnackBarModule
   ],
   providers: [
     {

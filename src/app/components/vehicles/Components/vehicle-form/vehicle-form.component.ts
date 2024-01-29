@@ -8,48 +8,52 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ServicesService } from 'src/app/Services/services.service';
 import {
   MatSnackBarModule,
   MatSnackBar,
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { VehiclesService } from 'src/app/Services/vehicles.service';
 
 @Component({
-  selector: 'app-driverForm',
-  templateUrl: './driverForm.component.html',
-  styleUrls: ['./driverForm.component.css'],
+  selector: 'app-vehicle-form',
+  templateUrl: './vehicle-form.component.html',
+  styleUrls: ['./vehicle-form.component.css'],
 })
-export class DriverFormComponent implements OnInit {
+export class VehicleFormComponent implements OnInit {
   @Output() enviarDatos: EventEmitter<any> = new EventEmitter();
   @Input() dataEditing: any;
   @Input() clearFunction: any;
   @Input() deleteClicked: any;
   public formulario: FormGroup | undefined;
-  camposHabilitados = true;
-  esModoEditar: boolean = false;
-  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-  typeSendData = 'create';
-  fechaEnFormato: string = '';
+  public camposHabilitados = true;
+  public esModoEditar: boolean = false;
+  public horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  public verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  public typeSendData = 'create';
+  public fechaEnFormato: string = '';
+
+
+  
   constructor(
     private fb: FormBuilder,
-    private _api: ServicesService,
+    private _api: VehiclesService,
     private _snackBar: MatSnackBar
-  ) {
+  ) {}
+
+  ngOnInit() {
     if (this.formulario) {
       this.formulario.disable();
     }
-  }
-
-  ngOnInit() {
     if (this.typeSendData == 'create') {
       this.formulario = this.buildFormWithoutId();
     }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.dataEditing,"dataEditing");
+    
     if (changes['dataEditing']) {
       this.typeSendData = 'update';
       if (this.typeSendData === 'update') {
@@ -64,8 +68,7 @@ export class DriverFormComponent implements OnInit {
     }
 
     if (changes['deleteClicked']) {
-      
-      
+      console.log(this.deleteClicked, 'recibido desde vehicles');
       if (this.dataEditing && this.dataEditing.id != undefined) {
         this.onDelete(this.dataEditing.id);
       } else {
@@ -73,34 +76,25 @@ export class DriverFormComponent implements OnInit {
       }
     }
   }
-  
-  private buildFormWithId() {
-    // Construye el formulario incluyendo el campo 'id' para el modo de edición
+
+  private buildFormWithoutId() {
     return this.fb.group({
-      id: ['', [Validators.required]],
-      last_name: ['', [Validators.required]],
-      first_name: ['', [Validators.required]],
-      ssn: ['', [Validators.required]],
-      dod: ['', [Validators.required]],
-      address: ['', [Validators.required]],
-      city: ['', [Validators.required]],
-      zip: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      year: ['', [Validators.required]],
+      make: ['', [Validators.required]],
+      capacity: ['', [Validators.required]],
       active: [true, [Validators.required]],
     });
   }
 
-  private buildFormWithoutId() {
-    // Construye el formulario sin el campo 'id' para el modo de creación
+  private buildFormWithId() {
+    // Construye el formulario incluyendo el campo 'id' para el modo de edición
     return this.fb.group({
-      last_name: ['', [Validators.required]],
-      first_name: ['', [Validators.required]],
-      ssn: ['', [Validators.required]],
-      dod: ['', [Validators.required]],
-      address: ['', [Validators.required]],
-      city: ['', [Validators.required]],
-      zip: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
+      id: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      year: ['', [Validators.required]],
+      make: ['', [Validators.required]],
+      capacity: ['', [Validators.required]],
       active: [true, [Validators.required]],
     });
   }
@@ -109,10 +103,12 @@ export class DriverFormComponent implements OnInit {
     if (this.formulario && this.formulario.valid) {
       switch (typeSendData) {
         case 'create':
-          this.functionDriver(this.formulario.value);
+          this.functionVehicle(this.formulario.value);
           break;
         case 'update':
-          this.updateDriver(this.formulario.value, this.dataEditing.id);
+          console.log(this.formulario.value,"update");
+          
+          this.updateVehicle(this.formulario.value, this.dataEditing.id);
           break;
         default:
           break;
@@ -122,11 +118,11 @@ export class DriverFormComponent implements OnInit {
     }
   }
 
-  functionDriver(form: any) {
-    this._api.postDriver(form).subscribe(
+  functionVehicle(form: any) {
+    this._api.postVehicle(form).subscribe(
       (res) => {
         this.enviarDatos.emit(true);
-        this.openSnackBar('Driver created successfully');
+        this.openSnackBar('Vehicle created successfully');
         this.formulario?.reset();
       },
       (err) => {
@@ -135,12 +131,12 @@ export class DriverFormComponent implements OnInit {
     );
   }
 
-  updateDriver(form: any, id: number) {
-    this._api.updateDriver(form, id).subscribe(
+  updateVehicle(form: any, id: number) {
+    this._api.updateVehicle(form, id).subscribe(
       (res) => {
         this.enviarDatos.emit(true);
         this.formulario?.reset();
-        this.openSnackBar('Driver updated successfully');
+        this.openSnackBar('Vehicle updated successfully');
         this.typeSendData = 'create';
       },
       (err) => {
@@ -148,30 +144,27 @@ export class DriverFormComponent implements OnInit {
       }
     );
   }
+
   patchValueForm(data: any) {
     if (this.formulario && this.dataEditing) {
       this.formulario.patchValue({
         id: data.id,
-        last_name: data.last_name,
-        first_name: data.first_name,
-        ssn: data.ssn,
-        dod: data.dod,
-        address: data.address,
-        city: data.city,
-        zip: data.zip,
-        phone: data.phone,
+        capacity: data.capacity,
+        description: data.description,
+        make: data.make,
+        year: data.year,
         active: data.active,
       });
     }
-    // this.typeSendData = 'create';
+    //this.typeSendData = 'create';
   }
 
   onDelete(id: number) {
-    this._api.deleteDriver(id).subscribe(
+    this._api.deleteVehicle(id).subscribe(
       (res) => {
         this.enviarDatos.emit(true);
         this.formulario?.reset();
-        this.openSnackBar('Driver deleted successfully');
+        this.openSnackBar('Vehicle deleted successfully');
         this.typeSendData = 'create';
       },
       (err) => {
@@ -179,6 +172,7 @@ export class DriverFormComponent implements OnInit {
       }
     );
   }
+
   openSnackBar(massage: string) {
     this._snackBar.open(massage, 'Cerrar', {
       horizontalPosition: this.horizontalPosition,

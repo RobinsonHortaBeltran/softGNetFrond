@@ -1,0 +1,20 @@
+<div class="mat-elevation-z8">
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource">
+      <!-- Definición de columnas -->
+      <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+        <th mat-header-cell *matHeaderCellDef>{{ column | titlecase }}</th>
+        <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+      </ng-container>
+
+      <!-- Definición de filas -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;let index = index;" (click)="onRowClicked(index)"
+        [class.selected]="index === selectedRowIndex"></tr>
+    </table>
+  </div>
+  <!-- Agrega el paginador -->
+  <mat-paginator #MatPaginator *ngIf="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+    aria-label="Select page of items" [pageSize]="5">
+  </mat-paginator>
+</div>

@@ -1,3 +1,26 @@
-<p>
-  vehicles works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="container-toolbard">
+          <span class="span-title">Vehiculos</span>
+          <app-vehicle-toolbard (deleteClicked)="deleteToolbarButtonClick()" (buttonClickEracer)="handleToolbarButtonClick()"></app-vehicle-toolbard>
+        </div>
+        <hr>
+        <div class="card-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6">
+                <app-vehicles-table (dataEdit)="recibirDatosHijo2($event)"
+                  [datosHijo2]="datosDesdeHijo1"></app-vehicles-table>
+              </div>
+              <div class="col-md-6">
+                <app-vehicle-form  [deleteClicked]="deleteFunction" [dataEditing]="datosDesdeHijo2"  [clearFunction]="clearFuncion" (enviarDatos)="recibirDatosHijo1($event)"></app-vehicle-form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,14 +1,25 @@
-import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import { ServicesService } from 'src/app/Services/services.service';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { RoutesDService } from 'src/app/Services/RoutesD.service';
 
 @Component({
-  selector: 'app-table-drivers',
-  templateUrl: './table-drivers.component.html',
-  styleUrls: ['./table-drivers.component.css'],
+  selector: 'app-routes-table',
+  templateUrl: './routes-table.component.html',
+  styleUrls: ['./routes-table.component.css'],
 })
-export class TableDriversComponent implements OnInit {
+export class RoutesTableComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   @Input() datosHijo2: any;
   @Output() dataEdit: EventEmitter<any> = new EventEmitter();
 
@@ -29,21 +40,22 @@ export class TableDriversComponent implements OnInit {
   public data: any[] = [];
   public selectedRowIndex = -1;
   public selectedRowData: any;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  constructor(private _api: ServicesService, private cdr: ChangeDetectorRef) {}
+
+  constructor(private _api: RoutesDService, private cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit() {
     if (this.paginator) {
       this.dataSource.paginator = this.paginator;
     }
   }
+
   ngOnInit() {
-    this.getDrivers();
+    this.getRoutes();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['datosHijo2']) {
-      this.getDrivers();
+      this.getRoutes();
       this.cdr.detectChanges();
     }
   }
@@ -54,8 +66,8 @@ export class TableDriversComponent implements OnInit {
     this.dataEdit.emit(this.data[index]);
   }
 
-  getDrivers() {
-    this._api.getDrivers().subscribe((res) => {
+   getRoutes() {
+    this._api.getRoutes().subscribe((res) => {
       this.data = res;
       this.dataSource = new MatTableDataSource<any>(this.data);
     });

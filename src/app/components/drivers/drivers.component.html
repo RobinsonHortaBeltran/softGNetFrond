@@ -4,17 +4,17 @@
       <div class="card">
         <div class="container-toolbard">
           <span class="span-title">Conductores</span>
-        <app-drivers-toolbar></app-drivers-toolbar>
+        <app-drivers-toolbar (deleteClicked)="deleteToolbarButtonClick()" (buttonClickEracer)="handleToolbarButtonClick()"></app-drivers-toolbar>
         </div>
         <hr>
         <div class="card-body">
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-6">
-              <app-table-drivers [datosHijo2]="datosDesdeHijo1"></app-table-drivers>
+              <app-table-drivers (dataEdit)="recibirDatosHijo2($event)" [datosHijo2]="datosDesdeHijo1"></app-table-drivers>
               </div>
               <div class="col-md-6">
-                <app-driverForm (enviarDatos)="recibirDatosHijo1($event)"></app-driverForm>
+                <app-driverForm [deleteClicked]="deleteFunction"  [dataEditing]="datosDesdeHijo2" [clearFunction]="clearFuncion" (enviarDatos)="recibirDatosHijo1($event)"></app-driverForm>
               </div>
             </div>
           </div>

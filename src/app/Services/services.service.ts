@@ -22,7 +22,15 @@ export class ServicesService {
     return this.http.get(`${this.apiUrl}Drivers`);
   }
 
-  postDriver(form:any): Observable<any> {
+  postDriver(form: any): Observable<any> {
     return this.http.post(`${this.apiUrl}Drivers`, form);
+  }
+
+  updateDriver(form: any, id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}Drivers/${id}`, form);
+  }
+
+  deleteDriver(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}Drivers/${id}`);
   }
 }

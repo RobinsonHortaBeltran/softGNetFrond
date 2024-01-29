@@ -1,0 +1,51 @@
+/* Estilos personalizados para mostrar solo la línea inferior del form-floating */
+.form-floating {
+    position: relative;
+}
+
+.form-floating input {
+    border: none;
+    border-bottom: 1px dashed #ced4da;
+    /* Color de la línea inferior */
+    border-radius: 0;
+    /* Borde inferior sin redondeo */
+}
+
+.form-floating label {
+    color: #495057;
+    /* Color del texto de la etiqueta */
+}
+
+/* Estilos adicionales para resaltar la línea inferior cuando se enfoca */
+.form-floating input:focus {
+    border-bottom-color: #007bff;
+    /* Cambia el color de la línea inferior al enfocar */
+    box-shadow: none;
+    /* Elimina la sombra al enfocar */
+}
+
+.error-message {
+    color: red;
+    /* Cambia el color del texto a rojo o el color que desees */
+    font-size: 14px;
+    /* Tamaño de la fuente del mensaje de error */
+    margin-top: 5px;
+    /* Espaciado superior para separar el mensaje de error del campo de entrada */
+}
+
+.btn-material-design {
+    background-color: #2196F3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Cambiar el color de fondo al pasar sobre el botón */
+.btn-material-design:hover {
+    background-color: #1565C0;
+    /* Color de fondo más oscuro al pasar sobre el botón */
+}
