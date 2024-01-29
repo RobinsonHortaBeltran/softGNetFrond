@@ -1,0 +1,85 @@
+<div class="container">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit(typeSendData)" *ngIf="formulario">
+    <div class="row">
+      <div class="col">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" [attr.disabled]="!camposHabilitados" formControlName="dayWeek_num"
+            id="floatingInput">
+          <label for="floatingInput">Numero de semanas*</label>
+          <div *ngIf="formulario.get('dayWeek_num')?.invalid &&
+            (formulario.get('dayWeek_num')?.dirty || formulario.get('dayWeek_num')?.touched)" class="error-message">
+            <div *ngIf="formulario.get('dayWeek_num')?.errors?.['required']">
+              *Campo Requerido
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-floating mb-3">
+          <select class="form-control" [attr.disabled]="!camposHabilitados" formControlName="route_id"
+            id="floatingInput">
+            <option *ngFor="let route of routes" [value]="route.id">{{route.description}}
+            </option>
+          </select>
+          <label for="floatingInput">Ruta*</label>
+          <div *ngIf="formulario.get('route_id')?.invalid &&
+            (formulario.get('route_id')?.dirty || formulario.get('route_id')?.touched)" class="error-message">
+            <div *ngIf="formulario.get('route_id')?.errors?.['required']">
+              *Campo Requerido
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-floating mb-3">
+          <input type="date" class="form-control" [attr.disabled]="!camposHabilitados" formControlName="from"
+            id="floatingInput">
+          <label for="floatingInput">Fecha inicial*</label>
+          <div *ngIf="formulario.get('from')?.invalid &&
+                  (formulario.get('from')?.dirty || formulario.get('from')?.touched)" class="error-message">
+            <div *ngIf="formulario.get('from')?.errors?.['required']">
+              *Campo Requerido
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-floating mb-3">
+          <input type="date" class="form-control" [attr.disabled]="!camposHabilitados" formControlName="to"
+            id="floatingInput">
+          <label for="floatingInput">Fecha final*</label>
+          <div *ngIf="formulario.get('to')?.invalid &&
+                  (formulario.get('to')?.dirty || formulario.get('to')?.touched)" class="error-message">
+            <div *ngIf="formulario.get('to')?.errors?.['required']">
+              *Campo Requerido
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-floating mb-3">
+          <select class="form-control" [attr.disabled]="!camposHabilitados" formControlName="active" id="floatingInput">
+            <option selected>Seleccionar</option>
+            <option value="true">Activo</option>
+            <option value="false">Inactivo</option>
+          </select>
+          <label for="floatingInput">Estado*</label>
+          <div *ngIf="formulario.get('active')?.invalid &&
+                  (formulario.get('active')?.dirty || formulario.get('active')?.touched)" class="error-message">
+            <div *ngIf="formulario.get('active')?.errors?.['required']">
+              *Campo Requerido
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button mat-raised-button style="width: 100%;height: 30px;" type="submit" [disabled]="!formulario.valid"
+          color="primary">{{ esModoEditar ? 'Actualizar' : 'Guardar' }}</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,6 @@
+<div class="toolbar">
+  <a *ngIf="editingButton" (click)="onEditClick()"><i><img src="../../../../../assets/svg/edit.svg" alt=""></i></a>
+  <a *ngIf="editingButton" (click)="onConfigClick()"> <i><img src="../../../../../assets/svg/gears.svg" alt=""></i></a>
+  <a *ngIf="eraserButton" (click)="onClear()"><i><img src="../../../../../assets/svg/clear.svg" alt=""></i></a>
+  <a *ngIf="deleteButton" (click)="onDelete()"><i><img src="../../../../../assets/svg/trash.svg" alt=""></i></a>
+</div>

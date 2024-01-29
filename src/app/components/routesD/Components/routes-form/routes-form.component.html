@@ -16,13 +16,13 @@
       </div>
       <div class="col">
         <div class="form-floating mb-3">
-          <select class="form-control" [attr.disabled]="!camposHabilitados" formControlName="driver_id" id="floatingInput">
+          <select class="form-control" [attr.disabled]="!camposHabilitados" formControlName="driverId" id="floatingInput">
             <option *ngFor="let driver of drivers" [value]="driver.id">{{driver.first_name}} {{driver.last_name}}</option>
           </select>
           <label for="floatingInput">Conductor*</label>
-          <div *ngIf="formulario.get('driver_id')?.invalid &&
-            (formulario.get('driver_id')?.dirty || formulario.get('driver_id')?.touched)" class="error-message">
-            <div *ngIf="formulario.get('driver_id')?.errors?.['required']">
+          <div *ngIf="formulario.get('driverId')?.invalid &&
+            (formulario.get('driverId')?.dirty || formulario.get('driverId')?.touched)" class="error-message">
+            <div *ngIf="formulario.get('driverId')?.errors?.['required']">
               *Campo Requerido
             </div>
           </div>
@@ -32,13 +32,13 @@
     <div class="row">
       <div class="col">
         <div class="form-floating mb-3">
-          <select class="form-control" [attr.disabled]="!camposHabilitados" formControlName="vehicle_id" id="floatingInput">
+          <select class="form-control" [attr.disabled]="!camposHabilitados" formControlName="vehicleId" id="floatingInput">
             <option *ngFor="let vehicle of vehicles" [value]="vehicle.id">{{vehicle.description}} </option>
           </select>
-          <label for="floatingInput">Ssn*</label>
-          <div *ngIf="formulario.get('vehicle_id')?.invalid &&
-            (formulario.get('vehicle_id')?.dirty || formulario.get('vehicle_id')?.touched)" class="error-message">
-            <div *ngIf="formulario.get('vehicle_id')?.errors?.['required']">
+          <label for="floatingInput">Vehiculo*</label>
+          <div *ngIf="formulario.get('vehicleId')?.invalid &&
+            (formulario.get('vehicleId')?.dirty || formulario.get('vehicleId')?.touched)" class="error-message">
+            <div *ngIf="formulario.get('vehicleId')?.errors?.['required']">
               *Campo Requerido
             </div>
           </div>

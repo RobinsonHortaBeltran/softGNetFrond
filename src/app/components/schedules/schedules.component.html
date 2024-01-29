@@ -1,3 +1,29 @@
-<p>
-  schedules works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="container-toolbard">
+          <span class="span-title">Horarios</span>
+          <app-schedule-toolbard> (deleteClicked)="deleteToolbarButtonClick()"
+          (buttonClickEracer)="handleToolbarButtonClick()"</app-schedule-toolbard>
+          
+        </div>
+        <hr>
+        <div class="card-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6">
+                <app-schedules-table (dataEdit)="recibirDatosHijo2($event)"
+                  [datosHijo2]="datosDesdeHijo1"></app-schedules-table>
+              </div>
+              <div class="col-md-6">
+                <app-schedule-form [deleteClicked]="deleteFunction" [dataEditing]="datosDesdeHijo2"
+                  [clearFunction]="clearFuncion" (enviarDatos)="recibirDatosHijo1($event)"></app-schedule-form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

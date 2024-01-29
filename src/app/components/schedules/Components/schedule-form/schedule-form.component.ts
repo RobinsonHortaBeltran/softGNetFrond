@@ -7,25 +7,24 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { RoutesDService } from 'src/app/Services/RoutesD.service';
-import { ServicesService } from 'src/app/Services/services.service';
-import { VehiclesService } from 'src/app/Services/vehicles.service';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ScheduleService } from 'src/app/Services/schedule.service';
 import {
   MatSnackBarModule,
   MatSnackBar,
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
+import { RoutesDService } from 'src/app/Services/RoutesD.service';
+import { VehiclesService } from 'src/app/Services/vehicles.service';
+
 
 @Component({
-  selector: 'app-routes-form',
-  templateUrl: './routes-form.component.html',
-  styleUrls: ['./routes-form.component.css'],
+  selector: 'app-schedule-form',
+  templateUrl: './schedule-form.component.html',
+  styleUrls: ['./schedule-form.component.css'],
 })
-export class RoutesFormComponent implements OnInit {
+export class ScheduleFormComponent implements OnInit {
   @Output() enviarDatos: EventEmitter<any> = new EventEmitter();
   @Input() dataEditing: any;
   @Input() clearFunction: any;
@@ -37,14 +36,14 @@ export class RoutesFormComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   typeSendData = 'create';
   fechaEnFormato: string = '';
-  drivers: any[] = [];
+  routes: any[] = [];
   vehicles: any[] = [];
 
   constructor(
     private fb: FormBuilder,
-    private _api: RoutesDService,
+    private _api: ScheduleService,
     private _snackBar: MatSnackBar,
-    private _apiDriver: ServicesService,
+    private _apiRoute: RoutesDService,
     private _apiVehicle: VehiclesService
   ) {
     if (this.formulario) {
@@ -56,15 +55,11 @@ export class RoutesFormComponent implements OnInit {
     if (this.typeSendData == 'create') {
       this.formulario = this.buildFormWithoutId();
     }
-
     this.getDrivers();
-    this.getVehicles();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['dataEditing']) {
-       
-     
       this.typeSendData = 'update';
       if (this.typeSendData === 'update') {
         this.formulario = this.buildFormWithId();
@@ -72,6 +67,7 @@ export class RoutesFormComponent implements OnInit {
       }
     }
     if (changes['clearFunction']) {
+      alert( this.clearFunction)
       this.formulario?.reset();
       this.typeSendData = 'create';
       this.formulario = this.buildFormWithoutId();
@@ -90,9 +86,10 @@ export class RoutesFormComponent implements OnInit {
     // Construye el formulario incluyendo el campo 'id' para el modo de edición
     return this.fb.group({
       id: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      driverId: ['', [Validators.required]],
-      vehicleId: ['', [Validators.required]],
+      route_id: ['', [Validators.required]],
+      dayWeek_num: ['', [Validators.required]],
+      from: ['', [Validators.required]],
+      to: ['', [Validators.required]],
       active: [true, [Validators.required]],
     });
   }
@@ -100,9 +97,10 @@ export class RoutesFormComponent implements OnInit {
   private buildFormWithoutId() {
     // Construye el formulario sin el campo 'id' para el modo de creación
     return this.fb.group({
-      description: ['', [Validators.required]],
-      driverId: ['', [Validators.required]],
-      vehicleId: ['', [Validators.required]],
+      route_id: ['', [Validators.required]],
+      dayWeek_num: ['', [Validators.required]],
+      from: ['', [Validators.required]],
+      to: ['', [Validators.required]],
       active: [true, [Validators.required]],
     });
   }
@@ -111,10 +109,10 @@ export class RoutesFormComponent implements OnInit {
     if (this.formulario && this.formulario.valid) {
       switch (typeSendData) {
         case 'create':
-          this.functionRoute(this.formulario.value);
+          this.functionSchedules(this.formulario.value);
           break;
         case 'update':
-          this.updateRoute(this.formulario.value, this.dataEditing.id);
+          this.updateSchedules(this.formulario.value, this.dataEditing.id);
           break;
         default:
           break;
@@ -124,11 +122,11 @@ export class RoutesFormComponent implements OnInit {
     }
   }
 
-  functionRoute(form: any) {
-    this._api.postRoute(form).subscribe(
+  functionSchedules(form: any) {
+    this._api.postSchedule(form).subscribe(
       (res) => {
         this.enviarDatos.emit(true);
-        this.openSnackBar('Route created successfully');
+        this.openSnackBar('Schedules created successfully');
         this.formulario?.reset();
       },
       (err) => {
@@ -137,12 +135,12 @@ export class RoutesFormComponent implements OnInit {
     );
   }
 
-  updateRoute(form: any, id: number) {
-    this._api.updateRoute(form, id).subscribe(
+  updateSchedules(form: any, id: number) {
+    this._api.updateSchedule(form, id).subscribe(
       (res) => {
         this.enviarDatos.emit(true);
         this.formulario?.reset();
-        this.openSnackBar('Route updated successfully');
+        this.openSnackBar('Schedules updated successfully');
         this.typeSendData = 'create';
       },
       (err) => {
@@ -151,15 +149,13 @@ export class RoutesFormComponent implements OnInit {
     );
   }
   patchValueForm(data: any) {
-    
-    
     if (this.formulario && this.dataEditing) {
-      
       this.formulario.patchValue({
         id: data.id,
-        description: data.description,
-        driverId: data.driverId,
-        vehicleId: data.vehicleId,
+        route_id: data.route_id,
+        dayWeek_num: data.dayWeek_num,
+        from: data.from,
+        to: data.to,
         active: data.active,
       });
     }
@@ -167,11 +163,11 @@ export class RoutesFormComponent implements OnInit {
   }
 
   onDelete(id: number) {
-    this._api.deleteRoute(id).subscribe(
+    this._api.deleteSchedule(id).subscribe(
       (res) => {
         this.enviarDatos.emit(true);
         this.formulario?.reset();
-        this.openSnackBar('Route deleted successfully');
+        this.openSnackBar('Schedules deleted successfully');
         this.typeSendData = 'create';
       },
       (err) => {
@@ -187,9 +183,9 @@ export class RoutesFormComponent implements OnInit {
   }
 
   getDrivers() {
-    this._apiDriver.getDrivers().subscribe(
+    this._apiRoute.getRoutes().subscribe(
       (res) => {
-        this.drivers = res;
+        this.routes = res;
       },
       (err) => {
         console.log(err);
@@ -197,14 +193,4 @@ export class RoutesFormComponent implements OnInit {
     );
   }
 
-  getVehicles() {
-    this._apiVehicle.getVehicles().subscribe(
-      (res) => {
-        this.vehicles = res;
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
 }

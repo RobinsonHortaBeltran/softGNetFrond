@@ -43,6 +43,10 @@ import { RoutesTableComponent } from './components/routesD/Components/routes-tab
 import { RoutesToolbardComponent } from './components/routesD/Components/routes-toolbard/routes-toolbard.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SchedulesComponent } from './components/schedules/schedules.component';
+import { ScheduleFormComponent } from './components/schedules/Components/schedule-form/schedule-form.component';
+import { ScheduleToolbardComponent } from './components/schedules/Components/schedule-toolbard/schedule-toolbard.component';
+import { SchedulesTableComponent } from './components/schedules/Components/schedules-table/schedules-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +71,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     RoutesFormComponent,
     RoutesTableComponent,
     RoutesToolbardComponent,
+    SchedulesComponent,
+    ScheduleFormComponent,
+    ScheduleToolbardComponent,
+    SchedulesTableComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +96,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatPaginatorModule,
     MatSnackBarModule,
     MatFormFieldModule,
-    MatAutocompleteModule, // Replace MatSnackBar with MatSnackBarModule
+    MatAutocompleteModule,
+    // Replace MatSnackBar with MatSnackBarModule
   ],
   providers: [
     {

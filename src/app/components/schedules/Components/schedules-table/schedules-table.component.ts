@@ -11,44 +11,42 @@ import {
 } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { RoutesDService } from 'src/app/Services/RoutesD.service';
+import { ScheduleService} from 'src/app/Services/schedule.service';
 
 @Component({
-  selector: 'app-routes-table',
-  templateUrl: './routes-table.component.html',
-  styleUrls: ['./routes-table.component.css'],
+  selector: 'app-schedules-table',
+  templateUrl: './schedules-table.component.html',
+  styleUrls: ['./schedules-table.component.css'],
 })
-export class RoutesTableComponent implements OnInit {
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+export class SchedulesTableComponent implements OnInit {
   @Input() datosHijo2: any;
   @Output() dataEdit: EventEmitter<any> = new EventEmitter();
-
   displayedColumns: string[] = [
     'id',
-    'description',
+    'dayWeek_num',
+    'from',
+    'to',
     'active',
   ];
-
   public dataSource: any;
   public data: any[] = [];
   public selectedRowIndex = -1;
   public selectedRowData: any;
-
-  constructor(private _api: RoutesDService, private cdr: ChangeDetectorRef) {}
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  constructor(private _api: ScheduleService, private cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit() {
     if (this.paginator) {
       this.dataSource.paginator = this.paginator;
     }
   }
-
   ngOnInit() {
-    this.getRoutes();
+    this.getSchedules();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['datosHijo2']) {
-      this.getRoutes();
+      this.getSchedules();
       this.cdr.detectChanges();
     }
   }
@@ -59,8 +57,8 @@ export class RoutesTableComponent implements OnInit {
     this.dataEdit.emit(this.data[index]);
   }
 
-  getRoutes() {
-    this._api.getRoutes().subscribe((res) => {
+  getSchedules() {
+    this._api.getSchedules().subscribe((res) => {
       this.data = res;
       this.dataSource = new MatTableDataSource<any>(this.data);
     });
